@@ -3,35 +3,27 @@
 
 int main(void)
 {
-	int X, cnt = 0;
+	int X, i = 2;
+	int M[1000001] = {0};
 
 	scanf("%d", &X);
 
-	while (X != 1) {
-		if (X % 3 == 0) {
-			X /= 3;
-			//printf("%d\n", X);
-			cnt++;
-			continue;
+	M[1] = 0;
+
+	while (i <= X) {
+		if (i % 3 == 0) {
+			M[i] = 1 + M[i / 3];
 		}
-		if ((X - 1) % 3 == 0) {
-			X--;
-			//printf("%d\n", X);
-			cnt++;
-			continue;
+		else if ((i - 1) % 3 == 0) {
+			M[i] = 2 + M[(i - 1) / 3];
 		}
-		if (X % 2 == 0) {
-			X /= 2;
-			//printf("%d\n", X);
-			cnt++;
-			continue;
+		else if (i % 2 == 0) {
+			M[i] = 1 + M[i / 2];
 		}
-		X--;
-		//printf("%d\n", X);
+		i++;
 	}
 
-
-	printf("%d\n", cnt);
-
+	printf("%d\n", M[X]);
+	
 	return 0;
 }
